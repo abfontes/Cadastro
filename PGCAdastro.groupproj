@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{9A3BA44E-AC5F-498A-92A2-B0DFF88E679E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="PCadastro.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ConsultaCepViaCep-master\ConsultaCepViaCep\ConsultaCepViaCep.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PCadastro">
+        <MSBuild Projects="PCadastro.dproj"/>
+    </Target>
+    <Target Name="PCadastro:Clean">
+        <MSBuild Projects="PCadastro.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PCadastro:Make">
+        <MSBuild Projects="PCadastro.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ConsultaCepViaCep">
+        <MSBuild Projects="ConsultaCepViaCep-master\ConsultaCepViaCep\ConsultaCepViaCep.dproj"/>
+    </Target>
+    <Target Name="ConsultaCepViaCep:Clean">
+        <MSBuild Projects="ConsultaCepViaCep-master\ConsultaCepViaCep\ConsultaCepViaCep.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ConsultaCepViaCep:Make">
+        <MSBuild Projects="ConsultaCepViaCep-master\ConsultaCepViaCep\ConsultaCepViaCep.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PCadastro;ConsultaCepViaCep"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PCadastro:Clean;ConsultaCepViaCep:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PCadastro:Make;ConsultaCepViaCep:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
